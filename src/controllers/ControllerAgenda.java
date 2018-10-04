@@ -46,7 +46,9 @@ public class ControllerAgenda {
                 jbtn_nuevo();
             }
         }
-
+        /**
+         * Metodo para las acciones del boton eliminar
+         */
         private void jbtn_eliminar() {
             System.out.println("Action del boton jbtn_eliminar");
             System.out.println(modelAgenda.getEmail());
@@ -54,7 +56,9 @@ public class ControllerAgenda {
             JOptionPane.showMessageDialog(viewAgenda, "Registro eliminado correctamente");
             jbtn_primero_actionPerformed();
         }
-
+        /**
+         * Metodo para las acciones del boton insertar
+         */
         private void jbtn_insertar() {
             System.out.println("Action del boton jbtn_insertar");
             modelAgenda.setNombre(viewAgenda.jtf_nombre.getText());
@@ -63,14 +67,18 @@ public class ControllerAgenda {
             JOptionPane.showMessageDialog(viewAgenda, "Registro guardado correctamente");
             jbtn_primero_actionPerformed();
         }
-
+        /**
+         * Metodo para las acciones del boton modifcar
+         */
         private void jbtn_modificar() {
             System.out.println("Action del boton jbtn_modificar");
             modelAgenda.modificarRegistro(viewAgenda.jtf_nombre.getText(), viewAgenda.jtf_email.getText());
             JOptionPane.showMessageDialog(viewAgenda, "Registro actualizado correctamente");
             jbtn_primero_actionPerformed();
         }
-
+        /**
+         * Metodo para las acciones del boton nuevo
+         */
         private void jbtn_nuevo() {
             System.out.println("Action del boton jbtn_nuevo");
             modelAgenda.setEmail(null);

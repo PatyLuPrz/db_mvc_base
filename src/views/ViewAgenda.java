@@ -59,7 +59,7 @@ public class ViewAgenda extends javax.swing.JFrame {
 
         jl_titulo.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_titulo.setText("Agenda v1.0");
+        jl_titulo.setText("Agenda v2.0");
 
         jbn_insertar.setText("Insertar");
 

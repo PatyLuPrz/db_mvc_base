@@ -21,7 +21,6 @@ public class ModelAgenda {
     private Connection conexion;
     private Statement st;
     private ResultSet rs;
-
     private String nombre;
     private String email;
 
@@ -135,7 +134,12 @@ public class ModelAgenda {
             JOptionPane.showMessageDialog(null, "Error 005" + ex.getMessage());
         }
     }
-
+    
+    /**
+     * Este metodo se encarga de obtener los registros y mandarlos a los setter
+     * para despues ser obtenidos por el controlador y mostrados en la vista
+     */
+    
     private void llenarDatos() {
         System.out.print("Programa accion llenarDatos");
         try {
@@ -145,6 +149,12 @@ public class ModelAgenda {
             JOptionPane.showMessageDialog(null, "Error 006" + ex.getMessage());
         }        
     }
+    
+    /**
+     * Este metodo se encarga de insertar un registro nuevo a la BDD
+     * @param nombre Nombre de la persona a quien queremos registrar
+     * @param email  Email de la persona a quien queremos registrar
+     */
     
     public void insertarRegistro(String nombre, String email){
         System.out.print("Programa accion insertarRegistro");
@@ -156,6 +166,12 @@ public class ModelAgenda {
         }
     }
     
+    /**
+     * Este metodo se encarga de modificar un registro existente
+     * @param nombre Nuevo nombre
+     * @param email  Nuevo email
+     */
+    
     public void modificarRegistro(String nombre, String email){
         System.out.print("Programa accion modificarRegistro");
         try{
@@ -166,6 +182,11 @@ public class ModelAgenda {
             JOptionPane.showMessageDialog(null, "Error 008: " + ex.getMessage());
         }
     }
+    
+    /**
+     * Este metodo se encarga de eliminar un registro
+     * @param email Se elimina usando el email como valor de busqueda
+     */
     
     public void eliminarRegistro(String email){
         System.out.print("Programa accion eliminarRegistro");
