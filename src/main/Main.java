@@ -10,7 +10,7 @@ import controllers.ControllerAgenda;
 
 /**
  *
- * @author Salvador Hernandez Mendoza
+ * @author Zeo
  */
 public class Main {
 
@@ -22,5 +22,4 @@ public class Main {
         ViewAgenda viewAgenda = new ViewAgenda();
         ControllerAgenda controllerAgenda = new ControllerAgenda(modelAgenda, viewAgenda);
     }
-    
 }

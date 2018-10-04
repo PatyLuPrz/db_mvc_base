@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Salvador Hernandez Mendoza
+ * @author Zeo
  */
 public class ModelAgenda {
 
@@ -26,18 +26,22 @@ public class ModelAgenda {
     private String email;
 
     public String getNombre() {
+        System.out.println("get nombre");
         return nombre;
     }
 
     public void setNombre(String nombre) {
+        System.out.println("set nombre");
         this.nombre = nombre;
     }
 
     public String getEmail() {
+        System.out.println("get email");
         return email;
     }
 
     public void setEmail(String email) {
+        System.out.println("set email");
         this.email = email;
     }
 
@@ -50,12 +54,14 @@ public class ModelAgenda {
      */
     public void conectarDB() {
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3309/agenda_mvc", "user_mvc", "pass_mvc.2018");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/agenda_mvc", "user_mvc", "pass_mvc.2018");
             st = conexion.createStatement();
             rs = st.executeQuery("SELECT * FROM contactos;");
             rs.next();
             nombre = rs.getString("nombre");
             email = rs.getString("email");
+            this.setEmail(email);
+            this.setNombre(nombre);
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Error ModelAgenda 001: " + err.getMessage());
         }
@@ -70,6 +76,12 @@ public class ModelAgenda {
      */
     public void moverPrimerRegistro(){
         System.out.print("Programa accion moverPrimerRegistro");
+        try {
+            rs.first();
+            llenarDatos();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error 004" + ex.getMessage());
+        }
     }
     
     /**
@@ -80,6 +92,14 @@ public class ModelAgenda {
      */
     public void moverSiguienteRegistro(){
         System.out.print("Programa accion moverSiguienteRegistro");
+        try {
+            if (!rs.isLast()) {
+                rs.next();
+                llenarDatos();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error 003" + ex.getMessage());
+        }
     }
     
     /**
@@ -90,6 +110,14 @@ public class ModelAgenda {
      */
     public void moverAnteriorRegistro(){
         System.out.print("Programa accion moverAnteriorRegistro");
+        try {
+            if (!rs.isFirst()) {
+                rs.previous();
+                llenarDatos();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error 004" + ex.getMessage());
+        }
     }
     
     /**
@@ -100,5 +128,52 @@ public class ModelAgenda {
      */
     public void moverUltimoRegistro(){
         System.out.print("Programa accion moverUltimoRegistro");
+        try {
+            rs.last();
+            llenarDatos();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error 005" + ex.getMessage());
+        }
+    }
+
+    private void llenarDatos() {
+        System.out.print("Programa accion llenarDatos");
+        try {
+            this.setNombre(rs.getString("nombre"));
+            this.setEmail(rs.getString("email"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error 006" + ex.getMessage());
+        }        
+    }
+    
+    public void insertarRegistro(String nombre, String email){
+        System.out.print("Programa accion insertarRegistro");
+        try{
+            st.executeUpdate("INSERT INTO contactos(nombre,email) VALUES"+"('"+nombre+"','"+email+"');");
+            this.conectarDB();
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error 007: " + ex.getMessage());
+        }
+    }
+    
+    public void modificarRegistro(String nombre, String email){
+        System.out.print("Programa accion modificarRegistro");
+        try{
+            String actualEmail = this.getEmail();
+            st.executeUpdate("UPDATE contactos SET nombre='"+nombre+"',email='"+email+"' WHERE email='"+actualEmail+"';");
+            this.conectarDB();
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error 008: " + ex.getMessage());
+        }
+    }
+    
+    public void eliminarRegistro(String email){
+        System.out.print("Programa accion eliminarRegistro");
+        try{
+            st.executeUpdate("DELETE FROM contactos WHERE email='"+email+"';"); //CORREGIR
+            this.conectarDB();
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error 009: " + ex.getMessage());
+        }
     }
 }

@@ -9,7 +9,7 @@ package views;
 
 /**
  *
- * @author Salvador Hernandez Mendoza
+ * @author Zeo
  */
 public class ViewAgenda extends javax.swing.JFrame {
 
@@ -37,6 +37,11 @@ public class ViewAgenda extends javax.swing.JFrame {
         jbtn_anterior = new javax.swing.JButton();
         jbtn_siguiente = new javax.swing.JButton();
         jbtn_ultimo = new javax.swing.JButton();
+        jl_titulo = new javax.swing.JLabel();
+        jbn_insertar = new javax.swing.JButton();
+        jbn_nuevo = new javax.swing.JButton();
+        jbn_modificar = new javax.swing.JButton();
+        jbn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,21 +57,25 @@ public class ViewAgenda extends javax.swing.JFrame {
 
         jbtn_ultimo.setText(">|");
 
+        jl_titulo.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_titulo.setText("Agenda v1.0");
+
+        jbn_insertar.setText("Insertar");
+
+        jbn_nuevo.setText("Nuevo");
+
+        jbn_modificar.setText("Modificar");
+
+        jbn_eliminar.setText("Eliminar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtn_primero)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_anterior)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtn_siguiente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtn_ultimo))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jl_nombre)
@@ -74,13 +83,32 @@ public class ViewAgenda extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(101, Short.MAX_VALUE))
+                            .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jl_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jbn_nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbtn_primero)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtn_anterior))
+                            .addComponent(jbn_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbtn_siguiente)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtn_ultimo))
+                            .addComponent(jbn_insertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbn_eliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(35, 35, 35)
+                .addComponent(jl_titulo)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jl_nombre)
                     .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -94,7 +122,15 @@ public class ViewAgenda extends javax.swing.JFrame {
                     .addComponent(jbtn_anterior)
                     .addComponent(jbtn_siguiente)
                     .addComponent(jbtn_ultimo))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbn_insertar)
+                    .addComponent(jbn_nuevo))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbn_modificar)
+                    .addComponent(jbn_eliminar))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,12 +172,17 @@ public class ViewAgenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton jbn_eliminar;
+    public javax.swing.JButton jbn_insertar;
+    public javax.swing.JButton jbn_modificar;
+    public javax.swing.JButton jbn_nuevo;
     public javax.swing.JButton jbtn_anterior;
     public javax.swing.JButton jbtn_primero;
     public javax.swing.JButton jbtn_siguiente;
     public javax.swing.JButton jbtn_ultimo;
     public javax.swing.JLabel jl_email;
     public javax.swing.JLabel jl_nombre;
+    public javax.swing.JLabel jl_titulo;
     public javax.swing.JTextField jtf_email;
     public javax.swing.JTextField jtf_nombre;
     // End of variables declaration//GEN-END:variables
