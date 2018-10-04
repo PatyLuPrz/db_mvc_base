@@ -37,7 +37,13 @@ public class ControllerAgenda {
             } else if (e.getSource() == viewAgenda.jbtn_ultimo) {
                 jbtn_ultimo_actionPerformed();
             } else if(e.getSource() == viewAgenda.jbn_eliminar){
-                jbtn_eliminar();
+                int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de "
+                    + "eliminar el registro?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                if(resp==0){
+                    jbtn_eliminar();
+                } else{
+                    jbtn_primero_actionPerformed();
+                }                
             } else if(e.getSource() == viewAgenda.jbn_insertar){
                 jbtn_insertar();
             } else if(e.getSource() == viewAgenda.jbn_modificar){
@@ -85,7 +91,6 @@ public class ControllerAgenda {
             modelAgenda.setNombre(null);
             viewAgenda.jtf_email.setText(modelAgenda.getEmail());
             viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
-            viewAgenda.jbn_insertar.setEnabled(false);
         }
 
     };
